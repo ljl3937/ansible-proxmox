@@ -1,0 +1,19 @@
+---
+# tasks file for my
+- name: Add Disks
+  proxmox_kvm:
+    vmid: "{{ vmid }}"
+    node: "{{ node }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host: "{{ api_host }}"
+    name: "{{ vmname }}"
+    #virtio:
+    #  virtio0: 'local-lvm:vm-102-disk-1,size=10G'
+    #  virtio1: 'local-lvm:10'
+      #    state: "started"
+      #scsi:
+      #  scsi0: 'local-lvm:10'
+    bootdisk: scsi2
+    scsihw: virtio-scsi-single
+    update: true

@@ -1,0 +1,31 @@
+---
+# tasks file for vm
+- name: Create VMs
+  proxmox_kvm:
+    vmid: "{{ item }}"
+    node: "{{ node }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host: "{{ api_host }}"
+    name: "{{ vmname }}{{ item }}"
+    net: '{"net0":"virtio,bridge={{ vmbridge }}"}'
+    virtio: '{"virtio0":"local-lvm:{{ vmdisk }}"}'
+    cores: "{{ vmcores }}"
+    vcpus: "{{ vmvcpus }}"
+    memory: "{{ vmmemory }}"
+
+- name: Make Disk
+  shell: "qm importdisk {{ item }} /root/CentOS7.qcow2  local-lvm && qm set {{ item }} -virtio1 local-lvm:vm-{{ item }}-disk-1 -bootdisk virtio1"
+  register: myoutput
+  changed_when: myoutput.rc != 0
+
+- name: Start VM
+  proxmox_kvm:
+    vmid: "{{ item }}"
+    node: "{{ node }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host: "{{ api_host }}"
+    name: "{{ vmname }}{{ item }}"
+    state: "started"
+    update: true

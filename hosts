@@ -1,2 +1,2 @@
 [proxmox]
-192.168.56.199  ansible_user=root
+172.16.100.22 ansible_user=root

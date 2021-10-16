@@ -2,10 +2,10 @@
 # Varialble for All
 
 # --- Informasi Proxmox --- #
-node        : pve
+node        : ljl
 api_user    : root@pam
-api_password: lukmanlab
-api_host    : pve
+api_password: 123456
+api_host    : ljl
 
 
 # --- Setting Container --- #
