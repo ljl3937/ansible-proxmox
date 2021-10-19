@@ -30,7 +30,7 @@ ctbridge    : vmbr0
 
 # --- Setting Virtual Machine --- #
 vmid        : 102
-vmname      : Ubuntu18.04
+vmname      : vThunder
 vmcores     : 2
 vmvcpus     : 1
 vmmemory    : 1024
