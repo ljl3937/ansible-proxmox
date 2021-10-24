@@ -33,6 +33,6 @@ vmid        : 102
 vmname      : vThunder
 vmcores     : 2
 vmvcpus     : 1
-vmmemory    : 1024
+vmmemory    : 4096
 vmdisk      : 15
 vmbridge    : vmbr0

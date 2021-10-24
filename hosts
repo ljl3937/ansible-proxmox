@@ -1,2 +1,2 @@
 [proxmox]
-172.16.100.22 ansible_user=root
+172.16.100.22 ansible_user=root ansible_python_interpreter=/usr/bin/python3
