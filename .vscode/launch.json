@@ -13,5 +13,18 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}"
         },
+        {
+            "name": "Python: 当前文件（MAC）",
+            "type": "python",
+            "request": "launch",
+            "program": "/Users/lijialin/miniconda3/bin/ansible-playbook",
+            "args": [
+                "-i",
+                "${workspaceFolder}/hosts",
+                "${workspaceFolder}/main.yml"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
+        },
     ]
 }

@@ -2,4 +2,4 @@
   block:
     - name: LOOP WITH INCLUDE_TASK
       include_tasks: create_start_vm.yml
-      loop: "{{ range(1001, 1002, 1)|list }}"
+      loop: "{{ range(1000, 1001, 1)|list }}"

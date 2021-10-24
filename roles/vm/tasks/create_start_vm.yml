@@ -8,7 +8,7 @@
     api_password: "{{ api_password }}"
     api_host: "{{ api_host }}"
     name: "{{ vmname }}{{ item }}"
-    net: '{"net0":"virtio,bridge={{ vmbridge }}"}'
+    net: '{"net0":"e1000,bridge={{ vmbridge }}"}'
     cores: "{{ vmcores }}"
     vcpus: "{{ vmvcpus }}"
     memory: "{{ vmmemory }}"

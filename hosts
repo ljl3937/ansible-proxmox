@@ -1,2 +1,9 @@
 [proxmox]
-172.16.100.22 ansible_user=root ansible_python_interpreter=/usr/bin/python3
+172.16.100.22 ansible_user=root
+[vthunder]
+10.12.1.201
+[vthunder:vars]
+ansible_host = 10.12.1.201
+ansible_username = admin 
+ansible_password = a10 
+ansible_port = 443

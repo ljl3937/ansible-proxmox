@@ -1,0 +1,21 @@
+- name: Set DNS
+  a10.acos_axapi.a10_ip_dns_primary:
+    state: "present"
+    ip_v4_addr: "8.8.8.8"
+    ansible_host : "{{ ansible_host }}"
+    ansible_username : "{{ ansible_username }}" 
+    ansible_password : "{{ ansible_password }}" 
+    ansible_port : "{{ ansible_port }}"
+- name: Assign interface IP address
+  a10.acos_axapi.a10_interface_ethernet:
+    state: "present"
+    ip:
+      address_list:
+      -  ipv4-address: "10.0.0.4"
+         ipv4-netmask: "255.255.255.0"
+    ifnum: 1
+    action: enable
+    ansible_host : "{{ ansible_host }}"
+    ansible_username : "{{ ansible_username }}" 
+    ansible_password : "{{ ansible_password }}" 
+    ansible_port : "{{ ansible_port }}"
