@@ -21,7 +21,8 @@
             "args": [
                 "-i",
                 "${workspaceFolder}/hosts",
-                "${workspaceFolder}/main.yml"
+                "${workspaceFolder}/main.yml",
+                "-vvv"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}"

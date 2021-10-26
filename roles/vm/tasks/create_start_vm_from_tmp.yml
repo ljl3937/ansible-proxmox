@@ -1,0 +1,27 @@
+---
+- name: >
+    Clone VM with only source VM name.
+    The VM source is spynal.
+    The target VM name is zavala
+  community.general.proxmox_kvm:
+    vmid: "{{ item }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host: "{{ api_host }}"
+    clone: clone1
+    name: "puppet{{ item }}"
+    node: "{{ node }}"
+    storage: local-lvm
+    format: qcow2
+    timeout: 500
+
+- name: Start VM
+  proxmox_kvm:
+    vmid: "{{ item }}"
+    node: "{{ node }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host: "{{ api_host }}"
+    name: "puppet{{ item }}"
+    state: "started"
+    update: true

@@ -1,5 +1,5 @@
 [proxmox]
-172.16.100.22 ansible_user=root
+10.12.1.101 ansible_user=root ansible_python_interpreter=/Users/lijialin/miniconda3/bin/python3
 [vthunder]
 10.12.1.201
 [vthunder:vars]

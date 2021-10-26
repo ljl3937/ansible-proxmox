@@ -2,10 +2,10 @@
 # Varialble for All
 
 # --- Informasi Proxmox --- #
-node        : ljl
+node        : tp-colo-pve01
 api_user    : root@pam
-api_password: 123456
-api_host    : ljl
+api_password: a10networks
+api_host    : tp-colo-pve01
 
 
 # --- Setting Container --- #
