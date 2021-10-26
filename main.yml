@@ -1,10 +1,12 @@
 ---
 
-- hosts: proxmox
+# - hosts: proxmox
+#   gather_facts: no
+#   roles:
+#     - vm
+
+- hosts: vthunder
   connection: local 
   gather_facts: no
   roles:
-    # - container
-    - vm
-    # - a10
-
+    - a10
