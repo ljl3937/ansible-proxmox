@@ -8,3 +8,7 @@
     name: "{{ vmname }}{{ item }}"
     state: "started"
     update: true
+
+- name: Wait for prepare
+  pause:
+    seconds: 30
