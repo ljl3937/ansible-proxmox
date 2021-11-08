@@ -7,16 +7,11 @@
         - { vmid: '1004', hostname: 'puppet-client', ip: '10.12.1.202' }  
 - name: Wait for prepare
   pause:
-    seconds: 80
+    seconds: 40
 - name: Start CT
-  proxmox:
-    vmid: "{{ item.vmid }}"
-    node: "{{ node }}"
-    api_user: "{{ api_user }}"
-    api_password: "{{ api_password }}"
-    api_host: "{{ api_host }}"
-    state: started
-    timeout: 90
-  loop: 
-      - { vmid: '1003', hostname: 'puppet-server', ip: '10.12.1.201' }
-      - { vmid: '1004', hostname: 'puppet-client', ip: '10.12.1.202' }  
+  block:
+    - name: CREATE PUPPET
+      include_tasks: start_ct.yml
+      loop: 
+        - { vmid: '1003', hostname: 'puppet-server', ip: '10.12.1.201' }
+        - { vmid: '1004', hostname: 'puppet-client', ip: '10.12.1.202' }  
