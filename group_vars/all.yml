@@ -35,6 +35,6 @@ vmvcpus     : 1
 vmmemory    : 4096
 vmdisk      : 15
 vmbridge    : vmbr0
-#vmbridge10  : vmbr10
-#vmbridge20  : vmbr20
-#vmbridge30  : vmbr30
+vmbridge10  : vmbr10
+vmbridge20  : vmbr20
+vmbridge30  : vmbr30

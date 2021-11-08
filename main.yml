@@ -3,8 +3,8 @@
 - hosts: proxmox
   gather_facts: no
   roles:
-      - container
-        #- vm
+      # - container
+      - vm
 
 
         #- hosts: vthunder

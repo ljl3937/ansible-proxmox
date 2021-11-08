@@ -9,7 +9,11 @@
     api_host: "{{ api_host }}"
     name: "{{ vmname }}{{ item }}"
     net: 
-      '{"net0":"e1000,bridge={{ vmbridge }}"}'
+      '{"net0":"e1000,bridge={{ vmbridge }}",
+      "net1":"virtio,bridge={{ vmbridge10 }}",
+      "net2":"virtio,bridge={{ vmbridge20 }}",
+      "net3":"virtio,bridge={{ vmbridge30 }}"
+      }'
     cores: "{{ vmcores }}"
     vcpus: "{{ vmvcpus }}"
     memory: "{{ vmmemory }}"
