@@ -11,7 +11,7 @@
     state: "present"
     ip:
       address_list:
-      -  ipv4-address: "10.12.1.204"
+      -  ipv4-address: "10.0.1.2"
          ipv4-netmask: "255.255.255.0"
     ifnum: 2
     action: enable

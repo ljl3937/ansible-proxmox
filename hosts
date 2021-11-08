@@ -1,9 +1,9 @@
 [proxmox]
-10.12.1.101 ansible_user=root
+10.12.1.105 ansible_user=root
 [vthunder]
-10.12.1.201
+10.12.1.202
 [vthunder:vars]
-ansible_host = 10.12.1.201
+ansible_host = 10.12.1.202
 ansible_username = admin 
 ansible_password = a10 
 ansible_port = 443

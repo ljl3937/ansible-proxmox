@@ -1,0 +1,10 @@
+- name: Start VMS
+  proxmox_kvm:
+    vmid: "{{ item }}"
+    node: "{{ node }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host: "{{ api_host }}"
+    name: "{{ vmname }}{{ item }}"
+    state: "started"
+    update: true

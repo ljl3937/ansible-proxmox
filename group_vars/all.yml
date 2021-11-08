@@ -2,37 +2,39 @@
 # Varialble for All
 
 # --- Informasi Proxmox --- #
-node        : tp-colo-pve01
+node        : to-colo-pve05
 api_user    : root@pam
 api_password: a10networks
-api_host    : tp-colo-pve01
+api_host    : to-colo-pve05
 
 
 # --- Setting Container --- #
-OS_Template : ubuntu-18.04-standard_18.04-1_amd64.tar.gz 
+OS_Template : ubuntu-20.04-standard_20.04-1_amd64.tar.gz
 # ubuntu-16.04-standard_16.04-1_amd64.tar.gz 
 # centos-7-default_20171212_amd64.tar.xz
 
-ctid        : 101
-cthostname  : server.lukmanlab.com
-ctpassword  : lukmanlab
-searchdomain: lukmanlab.com
-ctnameserver: 1.1.1.1
+# ctid        : 1003
+cthostname  : server.puppet.com
+ctpassword  : password
+searchdomain: puppet.com
+ctnameserver: 8.8.8.8
 ctcores     : 2
 ctmemory    : 1024
 ctswap      : 512
 ctdisk      : 10
 ctstorage   : local-lvm
 
-ctip        : 192.168.56.56/24
-ctgw        : 192.168.56.1
+# ctip        : 10.12.1.201/24
+ctgw        : 10.12.1.1
 ctbridge    : vmbr0
 
 # --- Setting Virtual Machine --- #
-vmid        : 102
 vmname      : vThunder
 vmcores     : 2
 vmvcpus     : 1
 vmmemory    : 4096
 vmdisk      : 15
 vmbridge    : vmbr0
+#vmbridge10  : vmbr10
+#vmbridge20  : vmbr20
+#vmbridge30  : vmbr30

@@ -1,0 +1,28 @@
+---
+# Task file for Container
+
+#- name: Download OS Template
+#  get_url:
+#    url: "http://download.proxmox.com/images/system/{{ OS_Template }}"
+#    dest: "/var/lib/vz/template/cache/{{ OS_Template }}"
+
+- name: Create CT
+  proxmox:
+    vmid: "{{ item.vmid }}"
+    node: "{{ node }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host: "{{ api_host }}"
+    hostname: "{{ item.hostname }}"
+    password: "{{ ctpassword }}"
+    searchdomain: "{{ searchdomain }}"
+    nameserver: "{{ ctnameserver }}"
+    cores: "{{ ctcores }}"
+    swap: "{{ ctswap }}"
+    memory: "{{ ctmemory }}"
+    disk: "{{ ctdisk }}"
+    storage: "{{ ctstorage }}"
+    netif: '{"net0":"name=eno1,ip={{ item.ip }}/24,gw={{ ctgw }},bridge={{ ctbridge }}"}'
+    ostemplate: 'local:vztmpl/{{ OS_Template }}'
+    state: present
+

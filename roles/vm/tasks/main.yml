@@ -1,12 +1,14 @@
 - name: create start vm
   block:
     - name: CREATE VM414
-      include_tasks: create_start_vm414.yml
+      include_tasks: create_vm414.yml
       loop: "{{ range(1000, 1001, 1)|list }}"
     - name: CREATE VM502
-      include_tasks: create_start_vm502.yml
-      # include_tasks: create_start_vm_from_tmp.yml
+      include_tasks: create_vm502.yml
       loop: "{{ range(1001, 1003, 1)|list }}"
-    - name: CREATE VM puppet
-      include_tasks: create_start_vm_from_tmp.yml
-      loop: "{{ range(1003, 1005, 1)|list }}"
+    - name: Wait for prepare
+      pause:
+        seconds: 30
+    - name: START VMS
+      include_tasks: start.yml
+      loop: "{{ range(1000, 1003, 1)|list }}"
