@@ -12,7 +12,9 @@
       '{"net0":"e1000,bridge={{ vmbridge }}",
       "net1":"virtio,bridge={{ vmbridge10 }}",
       "net2":"virtio,bridge={{ vmbridge20 }}",
-      "net3":"virtio,bridge={{ vmbridge30 }}"
+      "net3":"virtio,bridge={{ vmbridge10 }}",
+      "net4":"virtio,bridge={{ vmbridge20 }}",
+      "net5":"virtio,bridge={{ vmbridge30 }}"
       }'
     cores: "{{ vmcores }}"
     vcpus: "{{ vmvcpus }}"

@@ -9,7 +9,8 @@ api_host    : to-colo-pve05
 
 
 # --- Setting Container --- #
-OS_Template : ubuntu-20.04-standard_20.04-1_amd64.tar.gz
+OS_Template : puppet.tar.gz
+# ubuntu-20.04-standard_20.04-1_amd64.tar.gz
 # ubuntu-16.04-standard_16.04-1_amd64.tar.gz 
 # centos-7-default_20171212_amd64.tar.xz
 

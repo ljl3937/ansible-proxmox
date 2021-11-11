@@ -3,15 +3,15 @@
     - name: CREATE PUPPET
       include_tasks: create_start_ct.yml
       loop: 
-        - { vmid: '1003', hostname: 'puppet-server', ip: '10.12.1.201' }
-        - { vmid: '1004', hostname: 'puppet-client', ip: '10.12.1.202' }  
+        - { vmid: '1004', hostname: 'puppet-server', ip: '10.12.1.202' }
+        - { vmid: '1005', hostname: 'puppet-client', ip: '10.12.1.203' }  
 - name: Wait for prepare
   pause:
     seconds: 40
 - name: Start CT
   block:
-    - name: CREATE PUPPET
+    - name: START PUPPET
       include_tasks: start_ct.yml
       loop: 
-        - { vmid: '1003', hostname: 'puppet-server', ip: '10.12.1.201' }
-        - { vmid: '1004', hostname: 'puppet-client', ip: '10.12.1.202' }  
+        - { vmid: '1004', hostname: 'puppet-server', ip: '10.12.1.202' }
+        - { vmid: '1005', hostname: 'puppet-client', ip: '10.12.1.203' }  
