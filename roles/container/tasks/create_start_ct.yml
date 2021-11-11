@@ -22,7 +22,12 @@
     memory: "{{ ctmemory }}"
     disk: "{{ ctdisk }}"
     storage: "{{ ctstorage }}"
-    netif: '{"net0":"name=eno1,ip={{ item.ip }}/24,gw={{ ctgw }},bridge={{ ctbridge }}"}'
+    netif: '{
+      "net0":"name=eno1,ip={{ item.ip }}/24,gw={{ ctgw }},bridge={{ ctbridge }}",
+      "net1":"name=eno2,ip={{ item.vlan_ip[0] }}/24,bridge={{ ctbridge10 }}",
+      "net2":"name=eno3,ip={{ item.vlan_ip[1] }}/24,bridge={{ ctbridge20 }}",
+      "net3":"name=eno4,ip={{ item.vlan_ip[2] }}/24,bridge={{ ctbridge30 }}"
+      }'
     ostemplate: 'local:vztmpl/{{ OS_Template }}'
     state: present
 
