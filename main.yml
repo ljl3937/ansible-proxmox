@@ -4,11 +4,17 @@
   gather_facts: no
   roles:
       # - container
-      - vm
+      # - vm
+      - set
 
+# - hosts: ubuntu
+#   # connection: local
+#   gather_facts: no
+#   roles:
+#     - ubuntu
 
-        #- hosts: vthunder
-        #  connection: local 
-        #  gather_facts: no
-        #  roles:
-        #    - a10
+#- hosts: vthunder
+#  connection: local 
+#  gather_facts: no
+#  roles:
+#    - a10

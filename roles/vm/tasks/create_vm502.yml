@@ -19,7 +19,7 @@
     cores: "{{ vmcores }}"
     vcpus: "{{ vmvcpus }}"
     memory: "{{ vmmemory }}"
-    # ide: '{"ide[0]":"local-lvm:15"}'
+    args: "-serial telnet:10.12.1.105:1234{{ item-999 }},server,nowait,nodelay"
 
 - name: Make Disk
   # shell: "/usr/sbin/qm importdisk {{ item }} /root/vThunder_4_1_4-GR1-P8_53.qcow2  local-lvm && /usr/sbin/qm set {{ item }} -virtio0 local-lvm:vm-{{ item }}-disk-0 -bootdisk virtio0"
@@ -27,14 +27,3 @@
   # shell: "qm set {{ item }} -ide0 local-lvm:15 -cdrom local:iso/ACOS_vThunder_5_0_1-TPS_148.iso -bootdisk ide2"
   register: myoutput
   changed_when: myoutput.rc != 0
-
-- name: Start VM
-  proxmox_kvm:
-    vmid: "{{ item }}"
-    node: "{{ node }}"
-    api_user: "{{ api_user }}"
-    api_password: "{{ api_password }}"
-    api_host: "{{ api_host }}"
-    name: "{{ vmname }}{{ item }}"
-    state: "started"
-    update: true

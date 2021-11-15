@@ -1,4 +1,4 @@
-- name: Create CT
+- name: Start CT
   proxmox:
     vmid: "{{ item.vmid }}"
     node: "{{ node }}"
@@ -8,6 +8,6 @@
     state: started
     timeout: 90
 
-- name: Wait for prepare
+- name: Wait 60s for prepare
   pause:
-    seconds: 40
+    seconds: 60

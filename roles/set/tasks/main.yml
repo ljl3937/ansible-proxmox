@@ -1,0 +1,16 @@
+- name: telnet a10
+  ansible.netcommon.telnet:
+    # host: 10.12.1.105
+    user: "admin"
+    password: "a10"
+    port: "12341"
+    login_prompt: "vThunder login: "
+    password_prompt: "Password:"
+    prompts:
+      - 'vThunder(NOLICENSE)>'
+    command:
+      - en
+  register: ping
+
+- name: output
+  debug: "msg={{ ping.output }}"

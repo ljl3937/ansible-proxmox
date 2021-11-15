@@ -21,7 +21,7 @@
     memory: "{{ vmmemory }}"
     serial: '{"serial1":"socket"}'
     sockets: 1
-    args: "-serial telnet:10.12.1.105:12341,server,nowait,nodelay"
+    args: "-serial telnet:10.12.1.105:1234{{ item-999 }},server,nowait,nodelay"
     # ide: '{"ide[0]":"local-lvm:15"}'
 
 - name: Make Disk

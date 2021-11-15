@@ -1,0 +1,16 @@
+---
+- name: Copy Script
+  copy: 
+    src: "setip"
+    dest: "/tmp"
+    owner: "root"
+    group: "root"
+    mode: "755"
+  
+- name: Set IP
+  shell: "/tmp/setip \"{{ ubuntus }}\";"
+  register: myoutput
+  changed_when: myoutput.rc != 0
+
+- name: debug
+  debug: "var=myoutput"
