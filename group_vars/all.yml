@@ -47,3 +47,17 @@ ubuntus     :
   - { vmid: '1004', hostname: 'puppet-server', ip: '10.12.1.202', nic: ["eno1","eno2","eno3","eno4"], vlan_ip: ["10.10.0.4","20.20.0.4","30.30.0.4"] }
   - { vmid: '1005', hostname: 'puppet-client', ip: '10.12.1.206', nic: ["eno1","eno2","eno3","eno4"], vlan_ip: ["10.10.0.5","20.20.0.5","30.30.0.5"] }
 pubkey      : ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtbRVX5ENRF9+AimevwtRjSJlTXhNZDZ5V7F3Z2RPDnGnxDs9G2PUaxMBYa2EU3ZF68SiL1fjUuLS6sZOb2o9i9d/WqyOQRlEQ+l05LDrzpZzgWiJ4em5+sBILHtX0n1YOoLI3njmM6knQqooMTWM22vsFg88GhQmaBbkiK3MRe/yV7AGXVa96h+2lflSMY2g1+7Z/eqjuLOzeTAXxGil+hxo49SPmi77jia4vQMYRupp32U8HTGfA3o2/GTsRel0murEJTf1y6ZduC1WsAp0aDWaVsNfN1PurizS751P7t4SqYM6IOjLYHV1G5NwS0qlO00MLwSLWZ8vZVQxN2Btqt5kAr5CkAO9sQOz2wrmSlMtzQQXsAOmlvH2TZ8NKjWPa05ikUmLmJIaq+7jP9fMb/ts5StaBTke+YMVBaA+Z/MsTtd68D6XFf1ePk9M1lNmu67HOT5a5xEoW8mNKZIeXubhGN6dmRPdgXstjrMKeZhrjRH8ufMBBI9OWL8P6hWE= root@arch
+testbedargs :
+  {
+    MGMT    : "10.12.1.100",
+    MGMT_GW_IP : "10.12.1.1",
+    TERM_SRV : "10.12.1.105",
+    AX1 : "10.12.1.202",
+    AX2 : "10.12.1.203",
+    RTR1 : "10.12.1.204",
+    CLI1 : "10.12.1.200",
+    SRV1 : "10.12.1.201",
+    AX1_TERM_PORT : "12341",
+    AX2_TERM_PORT : "12342",
+    RTR1_TERM_PORT : "12343"
+  }

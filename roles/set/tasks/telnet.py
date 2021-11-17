@@ -7,6 +7,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 import telnetlib
+import re
 from time import sleep
 
 from ansible.module_utils._text import to_bytes, to_text
@@ -63,6 +64,8 @@ class ActionModule(ActionBase):
                 self._task.args.get("password", self._play_context.password)
             )
 
+            en_pass = to_text(self._task.args.get('enablepassword'))
+
             # FIXME, default to play_context?
             port = int(self._task.args.get("port", 23))
             timeout = int(self._task.args.get("timeout", 120))
@@ -93,12 +96,23 @@ class ActionModule(ActionBase):
                     if send_newline:
                         tn.write(b"\n")
 
-                    tn.read_until(to_bytes(login_prompt))
-                    tn.write(to_bytes(user + "\n"))
+                    #增加没有hostname时的输入选项，当不需要hostname时：
+                    # user: no-user
+                    if 'no-user' not in user:
+                        tn.read_until(to_bytes(login_prompt))
+                        tn.write(to_bytes(user + "\n"))
 
                     if password:
                         tn.read_until(to_bytes(password_prompt))
                         tn.write(to_bytes(password + "\n"))
+                    if en_pass:
+                        tn.expect(list(map(to_bytes, prompts)))
+                        tn.write(to_bytes("enable\n"))
+                        tn.read_until(to_bytes(password_prompt))
+                        tn.write(to_bytes(en_pass + "\n"))
+                    if 'no-user' not in user:
+                        tn.read_until(to_bytes(login_prompt))
+                        tn.write(to_bytes(user + "\n"))
 
                     tn.expect(list(map(to_bytes, prompts)))
 

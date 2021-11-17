@@ -56,7 +56,8 @@ class ActionModule(ActionBase):
 
             host = self._task.args.get('host', self._play_context.remote_addr)
             user = self._task.args.get('user', self._play_context.remote_user)
-            password = self._task.args.get('password', self._play_context.password)
+            password = self._task.args.get(
+                'password', self._play_context.password)
 
             # FIXME, default to play_context?
             port = self._task.args.get('port', '23')
