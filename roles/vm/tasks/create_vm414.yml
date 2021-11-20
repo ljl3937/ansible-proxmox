@@ -2,12 +2,12 @@
 # tasks file for vm
 - name: Create VMs
   proxmox_kvm:
-    vmid: "{{ item }}"
+    vmid: "{{ item.vmid }}"
     node: "{{ node }}"
     api_user: "{{ api_user }}"
     api_password: "{{ api_password }}"
     api_host: "{{ api_host }}"
-    name: "{{ vmname }}{{ item }}"
+    name: "{{ vmname }}{{ item.vmid }}"
     net: 
       '{"net0":"e1000,bridge={{ vmbridge }}",
       "net1":"virtio,bridge={{ vmbridge10 }}",
@@ -21,10 +21,10 @@
     memory: "{{ vmmemory }}"
     serial: '{"serial1":"socket"}'
     sockets: 1
-    args: "-serial telnet:10.12.1.105:1234{{ item-999 }},server,nowait,nodelay"
+    args: "-serial telnet:10.12.1.105:{{ item.port }},server,nowait,nodelay"
     # ide: '{"ide[0]":"local-lvm:15"}'
 
 - name: Make Disk
-  shell: "/usr/sbin/qm importdisk {{ item }} /root/vThunder_4_1_4-GR1-P8_53.qcow2 local-lvm && /usr/sbin/qm set {{ item }} -virtio0 local-lvm:vm-{{ item }}-disk-0 -bootdisk virtio0"
+  shell: "/usr/sbin/qm importdisk {{ item.vmid }} /root/vThunder_4_1_4-GR1-P8_53.qcow2 local-lvm && /usr/sbin/qm set {{ item.vmid }} -virtio0 local-lvm:vm-{{ item.vmid }}-disk-0 -bootdisk virtio0"
   register: myoutput
   changed_when: myoutput.rc != 0

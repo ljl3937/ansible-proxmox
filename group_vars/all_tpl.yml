@@ -1,0 +1,73 @@
+---
+# Varialble for All
+
+# --- Informasi Proxmox --- #
+node        : to-colo-pve05
+api_user    : root@pam
+api_password: a10networks
+api_host    : to-colo-pve05
+
+
+# --- Setting Container --- #
+os_template : puppet.tar.gz
+# ubuntu-20.04-standard_20.04-1_amd64.tar.gz
+# ubuntu-16.04-standard_16.04-1_amd64.tar.gz 
+# centos-7-default_20171212_amd64.tar.xz
+
+# ctid        : 1003
+ctnum       : 2
+cthostname  : server.puppet.com
+ctpassword  : password
+searchdomain: puppet.com
+ctnameserver: 8.8.8.8
+ctcores     : 2
+ctmemory    : 1024
+ctswap      : 512
+ctdisk      : 10
+ctstorage   : local-lvm
+
+# ctip        : 10.12.1.201/24
+ctgw        : 10.12.1.1
+ctbridge    : vmbr0
+ctbridge10  : vmbr10
+ctbridge20  : vmbr20
+ctbridge30  : vmbr30
+
+# --- Setting Virtual Machine --- #
+num_414     : 1
+num_502     : 2
+args_414   : 
+  - { vmid: '1001', port: '12341' }
+args_502   : 
+  - { vmid: '1002', port: '12342' }
+  - { vmid: '1003', port: '12343' }
+vmids       :
+  - "1000"
+vmname      : vThunder
+vmcores     : 2
+vmvcpus     : 1
+vmmemory    : 4096
+vmdisk      : 15
+vmbridge    : vmbr0
+vmbridge10  : vmbr10
+vmbridge20  : vmbr20
+vmbridge30  : vmbr30
+
+ubuntus     :
+  - { vmid: '1004', hostname: 'puppet-server', ip: '10.12.1.202', nic: ["eno1","eno2","eno3","eno4"], vlan_ip: ["10.10.0.4","20.20.0.4","30.30.0.4"] }
+  - { vmid: '1005', hostname: 'puppet-client', ip: '10.12.1.206', nic: ["eno1","eno2","eno3","eno4"], vlan_ip: ["10.10.0.5","20.20.0.5","30.30.0.5"] }
+pubkey      : ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtbRVX5ENRF9+AimevwtRjSJlTXhNZDZ5V7F3Z2RPDnGnxDs9G2PUaxMBYa2EU3ZF68SiL1fjUuLS6sZOb2o9i9d/WqyOQRlEQ+l05LDrzpZzgWiJ4em5+sBILHtX0n1YOoLI3njmM6knQqooMTWM22vsFg88GhQmaBbkiK3MRe/yV7AGXVa96h+2lflSMY2g1+7Z/eqjuLOzeTAXxGil+hxo49SPmi77jia4vQMYRupp32U8HTGfA3o2/GTsRel0murEJTf1y6ZduC1WsAp0aDWaVsNfN1PurizS751P7t4SqYM6IOjLYHV1G5NwS0qlO00MLwSLWZ8vZVQxN2Btqt5kAr5CkAO9sQOz2wrmSlMtzQQXsAOmlvH2TZ8NKjWPa05ikUmLmJIaq+7jP9fMb/ts5StaBTke+YMVBaA+Z/MsTtd68D6XFf1ePk9M1lNmu67HOT5a5xEoW8mNKZIeXubhGN6dmRPdgXstjrMKeZhrjRH8ufMBBI9OWL8P6hWE= root@arch
+testbedargs :
+  {
+    MGMT    : "10.12.1.157",
+    MGMT_GW_IP : "10.12.1.1",
+    TERM_SRV : "10.12.1.105",
+    AX1 : "10.12.1.202",
+    AX2 : "10.12.1.203",
+    RTR1 : "10.12.1.204",
+    CLI1 : "10.12.1.200",
+    SRV1 : "10.12.1.201",
+    AX1_TERM_PORT : "12341",
+    AX2_TERM_PORT : "12342",
+    RTR1_TERM_PORT : "12343"
+  }

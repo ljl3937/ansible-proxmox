@@ -1,12 +1,23 @@
 ---
 
-- hosts: proxmox
-  gather_facts: no
-  connection: local
-  roles:
-      - container
-      - vm
-      - set
+- hosts: central
+  tasks:
+  - name: copy testbed file
+    copy:
+      src: "AXSoftVM1001TBCfg.tcl"
+      dest: "/home/automation/TESTBEDS/"
+      mode: 755
+      owner: automation
+      group: automation
+
+      
+# - hosts: proxmox
+#   gather_facts: no
+#   connection: local
+#   roles:
+#       - container
+#       - vm
+#       - set
 
 # - hosts: ubuntu
 #   # connection: local
@@ -19,20 +30,3 @@
 #  gather_facts: no
 #  roles:
 #    - a10
-
-- hosts: localhost
-  tasks:
-    - name: Set testbed
-      shell: "python3 set_testbed.py \"{{ testbedargs }}\";"
-      register: myoutput
-      changed_when: myoutput.rc != 0
-
-- hosts: "{{ testbedargs.MGNT }}"
-  tasks:
-    - name: copy testbed file
-      copy:
-        src: "AXSoftVM01TBCfg.tcl"
-        dest: "/home/automation/TESTBEDS/"
-        mode: 755
-        owner: root
-        group: root

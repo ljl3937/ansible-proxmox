@@ -10,3 +10,5 @@ ansible_port = 443
 [ubuntu]
 10.12.1.202 ansible_user=root ansible_password=password
 10.12.1.206 ansible_user=root ansible_password=password
+[central]
+10.12.1.157

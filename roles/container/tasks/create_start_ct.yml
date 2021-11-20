@@ -28,7 +28,7 @@
       "net2":"name={{ item.nic[2] }},bridge={{ ctbridge20 }}",
       "net3":"name={{ item.nic[3] }},bridge={{ ctbridge30 }}"
       }'
-    ostemplate: 'local:vztmpl/{{ OS_Template }}'
+    ostemplate: 'local:vztmpl/{{ os_template }}'
     pubkey: "{{ pubkey }}"
     state: present
 
