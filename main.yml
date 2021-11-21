@@ -10,20 +10,28 @@
       owner: automation
       group: automation
 
-      
-# - hosts: proxmox
-#   gather_facts: no
-#   connection: local
-#   roles:
-#       - container
-#       - vm
-#       - set
 
-# - hosts: ubuntu
-#   # connection: local
-#   gather_facts: no
-#   roles:
-#     - ubuntu
+- hosts: central
+  tasks:
+  - name: chmod
+    shell: "chmod 755 /home/automation/TESTBEDS/AXSoftVM1001TBCfg.tcl"
+    register: myoutput
+    changed_when: myoutput.rc != 0
+
+      
+- hosts: proxmox
+  gather_facts: no
+  connection: local
+  roles:
+      - container
+      - vm
+      - set
+
+- hosts: ubuntu
+  # connection: local
+  gather_facts: no
+  roles:
+    - ubuntu
 
 #- hosts: vthunder
 #  connection: local 
