@@ -6,10 +6,16 @@
     copy:
       src: "AXSoftVM1001TBCfg.tcl"
       dest: "/home/automation/TESTBEDS/"
-      mode: 755
+      mode: 777
       owner: automation
       group: automation
 
+- hosts: central
+  tasks:
+  - name: chmod
+    shell: "chmod 755 /home/automation/TESTBEDS/AXSoftVM1001TBCfg.tcl"
+    register: myoutput
+    changed_when: myoutput.rc != 0
       
 # - hosts: proxmox
 #   gather_facts: no
