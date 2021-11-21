@@ -3,6 +3,20 @@
 import os, ssl
 import urllib.request, json
 import yaml
+from telnetClient import TelnetClient
+import subprocess
+import re
+
+def get_exists_ports(node):
+    state,output = subprocess.getstatusoutput("sshpass -p a10networks ssh root@%s \"netstat -anp|grep 123|grep kvm\"" % node)
+    lines = output.split("\n")
+    ports = []
+    for line in lines:
+        strs = re.split(r"[ ]+", line)
+        port = strs[3].split(":")[1]
+        ports.append(port)
+    return ports
+
 # get pve ticket
 def getTicket(urlBase, user, password):
     try:
@@ -59,15 +73,21 @@ def set_tcl_args(args):
     f2.writelines(lines_b) 
     f2.close()
     f1.close()  # 关闭文件
-def reset_args(args, qemus):
+def reset_args(args, qemus, cts, exists_ports):
     max = 0
     args["args_414"] = []
     args["args_502"] = []
     args["vmids"] = []
     max_port = 12340
+    for eport in exists_ports:
+        if max_port < int(eport):
+            max_port = int(eport)
     for qemu in qemus:
         if max < int(qemu["vmid"]):
             max = int(qemu["vmid"])
+    for ct in cts:
+        if max < int(ct["vmid"]):
+            max = int(ct["vmid"])
     for k in range(args["ctnum"]):
         for ubuntu in args["ubuntus"]:
             ubuntu["vmid"] = max + 1
@@ -108,14 +128,16 @@ if __name__ == '__main__':
     host = pveLogin[1]    
     port = pveLogin[2]    
     user = pveLogin[3]    
-    password = pveLogin[4]        
+    password = pveLogin[4] 
     urlBase = 'https://{}:{}/api2/json/'.format(host, port)    
     pveTicket, csrf_token = getTicket(urlBase, user, password)
     # get vms info
     qemus = getInfo('nodes/to-colo-pve05/qemu', pveTicket, csrf_token, 'GET')
-    print(qemus)
+    # print(qemus)
+    cts = getInfo('nodes/to-colo-pve05/lxc', pveTicket, csrf_token, 'GET')
     # set all.yml
-    args = reset_args(args,qemus)
+    exists_ports = get_exists_ports(args["node"])
+    args = reset_args(args,qemus,cts,exists_ports)
     stream2 = open("group_vars/all.yml", mode="w", encoding="utf-8")
     yaml.dump(args, stream2, allow_unicode=True)
 
@@ -123,3 +145,12 @@ if __name__ == '__main__':
     stream.close()
     set_tcl_args(args["testbedargs"])
     start_ansible()
+
+    host_ip = args["node"]
+    username = 'admin'
+    password = 'a10'
+    command = 'en'
+    # telnet_client = TelnetClient()
+    # if telnet_client.login_host(host_ip,username,password):
+    #     telnet_client.execute_some_command(command)
+    #     telnet_client.logout_host()
