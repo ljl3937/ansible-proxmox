@@ -23,7 +23,6 @@
   roles:
       - container
       - vm
-      - set
 
 - hosts: ubuntu
   # connection: local
