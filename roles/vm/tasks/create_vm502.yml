@@ -2,12 +2,12 @@
 # tasks file for vm
 - name: Create VMs
   proxmox_kvm:
-    vmid: "{{ item }}"
+    vmid: "{{ item.vmid }}"
     node: "{{ node }}"
     api_user: "{{ api_user }}"
     api_password: "{{ api_password }}"
     api_host: "{{ api_host }}"
-    name: "{{ vmname }}{{ item }}"
+    name: "{{ vmname }}{{ item.vmid }}"
     net: 
       '{"net0":"e1000,bridge={{ vmbridge }}",
       "net1":"virtio,bridge={{ vmbridge10 }}",
@@ -19,11 +19,11 @@
     cores: "{{ vmcores }}"
     vcpus: "{{ vmvcpus }}"
     memory: "{{ vmmemory }}"
-    args: "-serial telnet:10.12.1.105:1234{{ item-999 }},server,nowait,nodelay"
+    args: "-serial telnet:10.12.1.105:{{ item.port }},server,nowait,nodelay"
 
 - name: Make Disk
   # shell: "/usr/sbin/qm importdisk {{ item }} /root/vThunder_4_1_4-GR1-P8_53.qcow2  local-lvm && /usr/sbin/qm set {{ item }} -virtio0 local-lvm:vm-{{ item }}-disk-0 -bootdisk virtio0"
-  shell: "qm importdisk {{ item }} /root/vThunder_5_0_2-TPS_221.qcow2  local-lvm && qm set {{ item }} -virtio0 local-lvm:vm-{{ item }}-disk-0 -bootdisk virtio0"
+  shell: "qm importdisk {{ item.vmid }} /root/vThunder_5_0_2-TPS_221.qcow2  local-lvm && qm set {{ item.vmid }} -virtio0 local-lvm:vm-{{ item.vmid }}-disk-0 -bootdisk virtio0"
   # shell: "qm set {{ item }} -ide0 local-lvm:15 -cdrom local:iso/ACOS_vThunder_5_0_1-TPS_148.iso -bootdisk ide2"
   register: myoutput
   changed_when: myoutput.rc != 0

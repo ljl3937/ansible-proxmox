@@ -37,7 +37,7 @@ def getInfo(urlExt, ticket, csrf_token, method):
     except Exception as e:
         print('from ' + url + ' get info error: ' + e)
 # set test bed file
-def set_args(args):
+def set_tcl_args(args):
     f1 = open('AXSoftVM01TBCfg.tcl','r',encoding="utf-8")  
     lines = f1.readlines()
     #print(f1.tell()) 
@@ -59,29 +59,11 @@ def set_args(args):
     f2.writelines(lines_b) 
     f2.close()
     f1.close()  # 关闭文件
-if __name__ == '__main__':    
-    stream = open("group_vars/all_tpl.yml", mode="r",encoding="utf-8")
-    args = yaml.load(stream,Loader=yaml.Loader)
-    print(args)
-    #use ssl ca，need to permit    
-    ssl._create_default_https_context = ssl._create_unverified_context    
-    #use list for authoritation    
-    # pveLogin = ['pve', '192.168.1.88', 8006, 'root@pam', '12345678']    
-    pveLogin = ['pve', '10.12.1.105', 8006, 'root@pam', 'a10networks']    
-    alias = pveLogin[0]    
-    host = pveLogin[1]    
-    port = pveLogin[2]    
-    user = pveLogin[3]    
-    password = pveLogin[4]        
-    urlBase = 'https://{}:{}/api2/json/'.format(host, port)    
-    pveTicket, csrf_token = getTicket(urlBase, user, password)
-    # get vms info
-    qemus = getInfo('nodes/to-colo-pve05/qemu', pveTicket, csrf_token, 'GET')
-    print(qemus)
-    # set all.yml
+def reset_args(args, qemus):
     max = 0
-    args["vmids_414"] = []
-    args["vmids_502"] = []
+    args["args_414"] = []
+    args["args_502"] = []
+    args["vmids"] = []
     max_port = 12340
     for qemu in qemus:
         if max < int(qemu["vmid"]):
@@ -108,9 +90,36 @@ if __name__ == '__main__':
         args["vmids"].append(max+1)
         max += 1
         max_port += 1
+    return args
+def start_ansible():
+    output = os.system("ansible-playbook -ihosts main.yml -v")
+    return output
+
+if __name__ == '__main__':    
+    stream = open("group_vars/all_tpl.yml", mode="r",encoding="utf-8")
+    args = yaml.load(stream,Loader=yaml.Loader)
+    print(args)
+    #use ssl ca，need to permit    
+    ssl._create_default_https_context = ssl._create_unverified_context    
+    #use list for authoritation    
+    # pveLogin = ['pve', '192.168.1.88', 8006, 'root@pam', '12345678']    
+    pveLogin = ['pve', '10.12.1.105', 8006, 'root@pam', 'a10networks']    
+    alias = pveLogin[0]    
+    host = pveLogin[1]    
+    port = pveLogin[2]    
+    user = pveLogin[3]    
+    password = pveLogin[4]        
+    urlBase = 'https://{}:{}/api2/json/'.format(host, port)    
+    pveTicket, csrf_token = getTicket(urlBase, user, password)
+    # get vms info
+    qemus = getInfo('nodes/to-colo-pve05/qemu', pveTicket, csrf_token, 'GET')
+    print(qemus)
+    # set all.yml
+    args = reset_args(args,qemus)
     stream2 = open("group_vars/all.yml", mode="w", encoding="utf-8")
     yaml.dump(args, stream2, allow_unicode=True)
 
     stream2.close()
     stream.close()
-    set_args(args["testbedargs"])
+    set_tcl_args(args["testbedargs"])
+    start_ansible()

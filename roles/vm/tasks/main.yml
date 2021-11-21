@@ -3,10 +3,10 @@
     - name: CREATE VM414
       include_tasks: create_vm414.yml
       # loop: "{{ range(1001, 1003, 1)|list }}"
-      loop: "{{ vmids_414 }}"
+      loop: "{{ args_414 }}"
     - name: CREATE VM502
       include_tasks: create_vm502.yml
-      loop: "{{ vmids_502 }}"
+      loop: "{{ args_502 }}"
     - name: Wait for prepare
       pause:
         seconds: 30
