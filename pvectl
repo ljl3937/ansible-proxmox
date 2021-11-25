@@ -11,10 +11,13 @@ def get_exists_ports(node):
     state,output = subprocess.getstatusoutput("sshpass -p a10networks ssh root@%s \"netstat -anp|grep 123|grep kvm\"" % node)
     lines = output.split("\n")
     ports = []
-    for line in lines:
-        strs = re.split(r"[ ]+", line)
-        port = strs[3].split(":")[1]
-        ports.append(port)
+    lines = [item for item in filter(lambda x:x != '', lines)]
+    print("lines:%s" % lines)
+    if len(lines) != 0:
+        for line in lines:
+            strs = re.split(r"[ ]+", line)
+            port = strs[3].split(":")[1]
+            ports.append(port)
     return ports
 
 # get pve ticket
