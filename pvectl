@@ -101,8 +101,8 @@ def reset_args(args, qemus, cts, exists_ports):
         tmp = {
             "vmid": max+1,
             "port": max_port+1,
-            "manage_ip": old414["manage_ip"],
-            "data_ip": old414["data_ip"]
+            "manage_ip": old414[i]["manage_ip"],
+            "data_ip": old414[i]["data_ip"]
         }
         args["args_414"].append(tmp)
         args["vmids"].append(max+1)
@@ -112,8 +112,8 @@ def reset_args(args, qemus, cts, exists_ports):
         tmp = {
             "vmid": max+1,
             "port": max_port+1,
-            "manage_ip": old502["manage_ip"],
-            "data_ip": old502["data_ip"]
+            "manage_ip": old502[j]["manage_ip"],
+            "data_ip": old502[j]["data_ip"]
         }
         args["args_502"].append(tmp)
         args["vmids"].append(max+1)

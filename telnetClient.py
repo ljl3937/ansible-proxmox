@@ -14,7 +14,7 @@ class TelnetClient():
             # self.tn = telnetlib.Telnet(host_ip,port=23)
             self.tn.open(host_ip,port=port)
         except:
-            logging.warning('%snetwork connection failed'%host_ip)
+            logging.warning('%s network connection failed, port:%s' % (host_ip, port))
             return False
         # wait for username in 10s
         self.tn.read_until(b'vThunder login: ',timeout=10)
