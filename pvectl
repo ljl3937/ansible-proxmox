@@ -20,7 +20,7 @@ def get_exists_ports(node):
 # get pve ticket
 def getTicket(urlBase, user, password):
     try:
-        url = urlBase + 'access/ticket'        
+        url = urlBase + 'access/ticket'
         params = {'username':  user, 'password':  password}        
         post = urllib.parse.urlencode(params).encode(encoding='UTF8')        
         headers = {"Accept": "application/json"}        
@@ -75,6 +75,8 @@ def set_tcl_args(args):
     f1.close()  # 关闭文件
 def reset_args(args, qemus, cts, exists_ports):
     max = 0
+    old414 = args["args_414"]
+    old502 = args["args_502"]
     args["args_414"] = []
     args["args_502"] = []
     args["vmids"] = []
@@ -95,7 +97,9 @@ def reset_args(args, qemus, cts, exists_ports):
     for i in range(args["num_414"]):
         tmp = {
             "vmid": max+1,
-            "port": max_port+1
+            "port": max_port+1,
+            "manage_ip": old414["manage_ip"],
+            "data_ip": old414["data_ip"]
         }
         args["args_414"].append(tmp)
         args["vmids"].append(max+1)
@@ -104,7 +108,9 @@ def reset_args(args, qemus, cts, exists_ports):
     for j in range(args["num_502"]):
         tmp = {
             "vmid": max+1,
-            "port": max_port+1
+            "port": max_port+1,
+            "manage_ip": old502["manage_ip"],
+            "data_ip": old502["data_ip"]
         }
         args["args_502"].append(tmp)
         args["vmids"].append(max+1)
