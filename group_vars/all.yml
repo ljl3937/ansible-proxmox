@@ -2,10 +2,10 @@ api_host: to-colo-pve05
 api_password: a10networks
 api_user: root@pam
 args_414:
-- {port: 12341, vmid: 1207}
+- {port: 12341, vmid: 1109}
 args_502:
-- {port: 12342, vmid: 1208}
-- {port: 12343, vmid: 1209}
+- {port: 12342, vmid: 1110}
+- {port: 12343, vmid: 1111}
 ctbridge: vmbr0
 ctbridge10: vmbr10
 ctbridge20: vmbr20
@@ -35,19 +35,19 @@ ubuntus:
   ip: 10.12.1.202
   nic: [eno1, eno2, eno3, eno4]
   vlan_ip: [10.10.0.4, 20.20.0.4, 30.30.0.4]
-  vmid: 1205
+  vmid: 1107
 - hostname: puppet-client
   ip: 10.12.1.206
   nic: [eno1, eno2, eno3, eno4]
   vlan_ip: [10.10.0.5, 20.20.0.5, 30.30.0.5]
-  vmid: 1206
+  vmid: 1108
 vmbridge: vmbr0
 vmbridge10: vmbr10
 vmbridge20: vmbr20
 vmbridge30: vmbr30
 vmcores: 2
 vmdisk: 15
-vmids: [1207, 1208, 1209]
+vmids: [1109, 1110, 1111]
 vmmemory: 4096
 vmname: vThunder
 vmvcpus: 1
