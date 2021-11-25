@@ -37,10 +37,10 @@ ctbridge30  : vmbr30
 num_414     : 1
 num_502     : 2
 args_414   : 
-  - { vmid: '1001', port: '12341' }
+  - { vmid: '1001', port: '12341', manage_ip: '10.12.1.201', data_ip: '10.10.0.1' }
 args_502   : 
-  - { vmid: '1002', port: '12342' }
-  - { vmid: '1003', port: '12343' }
+  - { vmid: '1002', port: '12342', manage_ip: '10.12.1.202', data_ip: '10.10.0.2' }
+  - { vmid: '1003', port: '12343', manage_ip: '10.12.1.203', data_ip: '10.10.0.3' }
 vmids       :
   - "1000"
 vmname      : vThunder

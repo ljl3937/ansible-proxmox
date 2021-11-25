@@ -149,8 +149,14 @@ if __name__ == '__main__':
     host_ip = args["node"]
     username = 'admin'
     password = 'a10'
-    command = 'en'
-    # telnet_client = TelnetClient()
-    # if telnet_client.login_host(host_ip,username,password):
-    #     telnet_client.execute_some_command(command)
-    #     telnet_client.logout_host()
+    telnet_client = TelnetClient()
+    for arg in args["args_414"]:
+        if telnet_client.login_host(host_ip,username,password,arg["port"]):
+            telnet_client.set_manage_network(arg["manage_ip"])
+            telnet_client.set_data_network(arg["data_ip"])
+            telnet_client.logout_host()
+    for arg in args["args_502"]:
+        if telnet_client.login_host(host_ip,username,password,arg["port"]):
+            telnet_client.set_manage_network(arg["manage_ip"])
+            telnet_client.set_data_network(arg["data_ip"])
+            telnet_client.logout_host()

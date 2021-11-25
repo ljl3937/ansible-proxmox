@@ -9,10 +9,10 @@ class TelnetClient():
         self.tn = telnetlib.Telnet()
 
     # login
-    def login_host(self,host_ip,username,password):
+    def login_host(self,host_ip,username,password,port):
         try:
             # self.tn = telnetlib.Telnet(host_ip,port=23)
-            self.tn.open(host_ip,port=12341)
+            self.tn.open(host_ip,port=port)
         except:
             logging.warning('%snetwork connection failed'%host_ip)
             return False
@@ -32,10 +32,9 @@ class TelnetClient():
             logging.warning('%slogin failed,password is invalid'%host_ip)
             return False
 
-    # run some commands
-    def execute_some_command(self,command):
+    def enable(self):
         self.tn.read_until(b'vThunder(NOLICENSE)>',timeout=10)
-        self.tn.write(command.encode('ascii')+b'\n')
+        self.tn.write("en".encode('ascii')+b'\n')
         time.sleep(2)
         command_result = self.tn.read_very_eager().decode('ascii')
         self.tn.read_until(b'Password:',timeout=10)
@@ -44,7 +43,21 @@ class TelnetClient():
         command_result = self.tn.read_very_eager().decode('ascii')
         logging.warning('result:\n%s' % command_result)
         self.tn.write('configure terminal'.encode('ascii') + b'\n')
+        time.sleep(2)
         self.tn.read_until(b'vThunder(config)',timeout=30)
+        return True
+
+    def set_manage_network(self,ip):
+        self.tn.write('interface management'.encode('ascii') + b'\n')
+        time.sleep(2)
+        self.tn.read_until(b'vThunder(config-if:management)',timeout=10)
+        time.sleep(2)
+        self.tn.write(('ip address %s 255.255.255.0' % ip).encode('ascii') + b'\n')
+        time.sleep(2)
+        return True
+
+    # run some commands
+    def set_data_network(self,ip):
         self.tn.write('vlan 10'.encode('ascii') + b'\n')
         time.sleep(2)
         command_result = self.tn.read_very_eager().decode('ascii')
@@ -59,7 +72,7 @@ class TelnetClient():
         time.sleep(2)
         self.tn.write('interface ve 10'.encode('ascii') + b'\n')
         time.sleep(2)
-        self.tn.write('ip address 10.10.0.2 255.255.255.0'.encode('ascii') + b'\n')
+        self.tn.write(('ip address %s 255.255.255.0' % ip).encode('ascii') + b'\n')
         time.sleep(2)
         self.tn.write('show run'.encode('ascii') + b'\n')
         time.sleep(2)
@@ -78,5 +91,6 @@ if __name__ == '__main__':
     command = 'en'
     telnet_client = TelnetClient()
     if telnet_client.login_host(host_ip,username,password):
-        telnet_client.execute_some_command(command)
-        telnet_client.logout_host()
+        telnet_client.enable()
+        # telnet_client.set_manage_network(ip)
+        # telnet_client.set_data_network(ip)

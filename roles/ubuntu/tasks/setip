@@ -7,8 +7,7 @@ hostname=socket.gethostname()
 # ip=socket.gethostbyname(hostname)
 if args[0]["hostname"] == hostname:
     for nic in args[0]["nic"]:
-        if "eno1" not in nic:
-            i = 0
-            state,output = subprocess.getstatusoutput("vconfig add %s %s0;ifconfig %s.%s0 %s netmask 255.255.255.0 up" % (nic, i+1, nic, i+1, args[0]["vlan_ip"][i]))
-            i += 1
+        i = 0
+        state,output = subprocess.getstatusoutput("vconfig add %s %s0;ifconfig %s.%s0 %s netmask 255.255.255.0 up" % (nic, i+1, nic, i+1, args[0]["vlan_ip"][i]))
+        i += 1
     print(output)
