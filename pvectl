@@ -146,14 +146,14 @@ if __name__ == '__main__':
     cts = getInfo('nodes/to-colo-pve05/lxc', pveTicket, csrf_token, 'GET')
     # set all.yml
     exists_ports = get_exists_ports(args["node"])
-    args = reset_args(args,qemus,cts,exists_ports)
+    # args = reset_args(args,qemus,cts,exists_ports)
     stream2 = open("group_vars/all.yml", mode="w", encoding="utf-8")
     yaml.dump(args, stream2, allow_unicode=True)
 
     stream2.close()
     stream.close()
     set_tcl_args(args["testbedargs"])
-    start_ansible()
+    # start_ansible()
 
     host_ip = args["node"]
     username = 'admin'
@@ -161,11 +161,13 @@ if __name__ == '__main__':
     telnet_client = TelnetClient()
     for arg in args["args_414"]:
         if telnet_client.login_host(host_ip,username,password,arg["port"]):
+            telnet_client.enable()
             telnet_client.set_manage_network(arg["manage_ip"])
             telnet_client.set_data_network(arg["data_ip"])
             telnet_client.logout_host()
     for arg in args["args_502"]:
         if telnet_client.login_host(host_ip,username,password,arg["port"]):
+            telnet_client.enable()
             telnet_client.set_manage_network(arg["manage_ip"])
             telnet_client.set_data_network(arg["data_ip"])
             telnet_client.logout_host()

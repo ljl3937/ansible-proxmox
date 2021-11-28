@@ -2,10 +2,19 @@ api_host: to-colo-pve05
 api_password: a10networks
 api_user: root@pam
 args_414:
-- {data_ip: 10.10.0.1, manage_ip: 10.12.1.201, port: '12341', vmid: '1001'}
+- data_ip: 10.10.0.1
+  manage_ip: 10.12.1.201
+  port: '12341'
+  vmid: '1001'
 args_502:
-- {data_ip: 10.10.0.2, manage_ip: 10.12.1.202, port: '12342', vmid: '1002'}
-- {data_ip: 10.10.0.3, manage_ip: 10.12.1.203, port: '12343', vmid: '1003'}
+- data_ip: 10.10.0.2
+  manage_ip: 10.12.1.202
+  port: '12342'
+  vmid: '1002'
+- data_ip: 10.10.0.3
+  manage_ip: 10.12.1.203
+  port: '12343'
+  vmid: '1003'
 ctbridge: vmbr0
 ctbridge10: vmbr10
 ctbridge20: vmbr20
@@ -27,19 +36,42 @@ os_template: puppet.tar.gz
 pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSrL4GP9bwNT1AREVVFgrfgPbcoISITJ92GAFLYg4LMA38nw5tO/aLICj430Ex9I0tAvKvBScViypFDyoMbNdAgNtTdORn7g75TxQFEIETJCNATdXa0fmxxhR4pZbpNa+GDmtQTLWlvqOasJ8hBYIknWer0biCTgdhm7eE/A2cnlKzkofm9iCIAxe18aOMIvrPAjSdIO6fkNbyO6PZhm+FksstrXSiTpcyp5SZNVaiQTcIGDjWcblbFVV8vt1SAq0igmrOhEDOVvOjnKZyeikd5exswXwwsz25+Q0+ebINwAUMQLbezBqRSENxysoYUF1JYTEmXlleOICOEAo/xEe1
   root@client01
 searchdomain: puppet.com
-testbedargs: {AX1: 10.12.1.202, AX1_TERM_PORT: '12341', AX2: 10.12.1.203, AX2_TERM_PORT: '12342',
-  CLI1: 10.12.1.200, MGMT: 10.12.1.157, MGMT_GW_IP: 10.12.1.1, RTR1: 10.12.1.204,
-  RTR1_TERM_PORT: '12343', SRV1: 10.12.1.201, TERM_SRV: 10.12.1.105}
+testbedargs:
+  AX1: 10.12.1.202
+  AX1_TERM_PORT: '12341'
+  AX2: 10.12.1.203
+  AX2_TERM_PORT: '12342'
+  CLI1: 10.12.1.200
+  MGMT: 10.12.1.157
+  MGMT_GW_IP: 10.12.1.1
+  RTR1: 10.12.1.204
+  RTR1_TERM_PORT: '12343'
+  SRV1: 10.12.1.201
+  TERM_SRV: 10.12.1.105
 ubuntus:
 - hostname: puppet-server
   ip: 10.12.1.202
-  nic: [eno1, eno2, eno3, eno4]
-  vlan_ip: [10.10.0.4, 20.20.0.4, 30.30.0.4]
+  nic:
+  - eno1
+  - eno2
+  - eno3
+  - eno4
+  vlan_ip:
+  - 10.10.0.4
+  - 20.20.0.4
+  - 30.30.0.4
   vmid: '1004'
 - hostname: puppet-client
   ip: 10.12.1.206
-  nic: [eno1, eno2, eno3, eno4]
-  vlan_ip: [10.10.0.5, 20.20.0.5, 30.30.0.5]
+  nic:
+  - eno1
+  - eno2
+  - eno3
+  - eno4
+  vlan_ip:
+  - 10.10.0.5
+  - 20.20.0.5
+  - 30.30.0.5
   vmid: '1005'
 vmbridge: vmbr0
 vmbridge10: vmbr10
@@ -47,7 +79,8 @@ vmbridge20: vmbr20
 vmbridge30: vmbr30
 vmcores: 2
 vmdisk: 15
-vmids: ['1000']
+vmids:
+- '1000'
 vmmemory: 4096
 vmname: vThunder
 vmvcpus: 1

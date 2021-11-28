@@ -76,6 +76,8 @@ class TelnetClient():
         time.sleep(2)
         self.tn.write('show run'.encode('ascii') + b'\n')
         time.sleep(2)
+        self.tn.write('q'.encode('ascii') + b'\n')
+        time.sleep(2)
         command_result = self.tn.read_very_eager().decode('ascii')
         print(command_result)
 
@@ -90,7 +92,8 @@ if __name__ == '__main__':
     password = 'a10'
     command = 'en'
     telnet_client = TelnetClient()
-    if telnet_client.login_host(host_ip,username,password):
+    if telnet_client.login_host(host_ip,username,password, "12341"):
         telnet_client.enable()
-        # telnet_client.set_manage_network(ip)
-        # telnet_client.set_data_network(ip)
+        telnet_client.set_manage_network("10.12.1.201")
+        telnet_client.set_data_network("10.10.0.1")
+        telnet_client.logout_host()
