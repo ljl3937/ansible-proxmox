@@ -74,6 +74,8 @@ class TelnetClient():
         time.sleep(2)
         self.tn.write(('ip address %s 255.255.255.0' % ip).encode('ascii') + b'\n')
         time.sleep(2)
+        command_result = self.tn.read_very_eager().decode('ascii')
+        print(command_result)
         self.tn.write('show run'.encode('ascii') + b'\n')
         time.sleep(2)
         self.tn.write('q'.encode('ascii') + b'\n')
