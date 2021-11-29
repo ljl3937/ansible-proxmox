@@ -22,7 +22,7 @@ class TelnetClient():
         # wait for pssword in 10s
         self.tn.read_until(b'Password: ',timeout=10)
         self.tn.write(password.encode('ascii') + b'\n')
-        time.sleep(2)
+        time.sleep(10)
         # read_very_eager() is get the result
         command_result = self.tn.read_very_eager().decode('ascii')
         if 'Login incorrect' not in command_result:
@@ -53,6 +53,8 @@ class TelnetClient():
         self.tn.read_until(b'vThunder(config-if:management)',timeout=10)
         time.sleep(2)
         self.tn.write(('ip address %s 255.255.255.0' % ip).encode('ascii') + b'\n')
+        time.sleep(2)
+        self.tn.write('ip default-gateway 10.12.1.1'.encode('ascii') + b'\n')
         time.sleep(2)
         return True
 

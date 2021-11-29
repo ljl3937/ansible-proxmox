@@ -11,4 +11,4 @@
 
 - name: Wait for prepare
   pause:
-    seconds: 30
+    seconds: 50

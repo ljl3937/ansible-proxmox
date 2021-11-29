@@ -6,6 +6,7 @@ import yaml
 from telnetClient import TelnetClient
 import subprocess
 import re
+import time
 
 def get_exists_ports(node):
     state,output = subprocess.getstatusoutput("sshpass -p a10networks ssh root@%s \"netstat -anp|grep 123|grep kvm\"" % node)
@@ -154,6 +155,8 @@ if __name__ == '__main__':
     stream.close()
     set_tcl_args(args["testbedargs"])
     start_ansible()
+    print("Please wait for the system to start, do not exit!")
+    time.sleep(120)
 
     host_ip = args["node"]
     username = 'admin'
@@ -164,10 +167,12 @@ if __name__ == '__main__':
             telnet_client.enable()
             telnet_client.set_manage_network(arg["manage_ip"])
             telnet_client.set_data_network(arg["data_ip"])
+            time.sleep(5)
             telnet_client.logout_host()
     for arg in args["args_502"]:
         if telnet_client.login_host(host_ip,username,password,arg["port"]):
             telnet_client.enable()
             telnet_client.set_manage_network(arg["manage_ip"])
             telnet_client.set_data_network(arg["data_ip"])
+            time.sleep(5)
             telnet_client.logout_host()

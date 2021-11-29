@@ -5,9 +5,12 @@ import subprocess
 args = eval(sys.argv[1])
 hostname=socket.gethostname()
 # ip=socket.gethostbyname(hostname)
-if args[0]["hostname"] == hostname:
-    for nic in args[0]["nic"]:
+for j in range(len(args)):
+    if args[j]["hostname"] == hostname:
         i = 0
-        state,output = subprocess.getstatusoutput("vconfig add %s %s0;ifconfig %s.%s0 %s netmask 255.255.255.0 up" % (nic, i+1, nic, i+1, args[0]["vlan_ip"][i]))
-        i += 1
-    print(output)
+        for nic in args[j]["nic"]:
+            if i < len(args[j]["vlan_ip"]):
+                cmd = "vconfig add %s %s0;ifconfig %s.%s0 %s netmask 255.255.255.0 up" % (nic, i+1, nic, i+1, args[j]["vlan_ip"][i])
+                print("cmd:%s" % cmd)
+                state,output = subprocess.getstatusoutput(cmd)
+                i += 1
