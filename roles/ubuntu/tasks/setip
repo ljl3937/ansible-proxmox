@@ -13,4 +13,10 @@ for j in range(len(args)):
                 cmd = "vconfig add %s %s0;ifconfig %s.%s0 %s netmask 255.255.255.0 up" % (nic, i+1, nic, i+1, args[j]["vlan_ip"][i])
                 print("cmd:%s" % cmd)
                 state,output = subprocess.getstatusoutput(cmd)
+                if i is 0:
+                    cmd = "echo PS1=\"\\u@ATM\\W\\\\$\" >> /root/.bashrc;"
+                elif i is 1:
+                    cmd = "echo PS1=\"\\u@ATM-Server\\W\\\\$\" >> /root/.bashrc;"
+                print("cmd:%s" % cmd)
+                state,output = subprocess.getstatusoutput(cmd)
                 i += 1
