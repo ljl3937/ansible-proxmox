@@ -1,4 +1,4 @@
-- name: create start vm
+- name: create start vThunder vm
   block:
     - name: CREATE VM414
       include_tasks: create_vm414.yml
@@ -13,3 +13,16 @@
     - name: START VMS
       include_tasks: start.yml
       loop: "{{ vmids }}"
+
+- name: create start Linux vm
+  block:
+    - name: CREATE Linux
+      include_tasks: create_linux.yml
+      # loop: "{{ range(1001, 1003, 1)|list }}"
+      loop: "{{ ubuntus }}"
+    - name: Wait for prepare
+      pause:
+        seconds: 30
+    - name: START VMS
+      include_tasks: start.yml
+      loop: "{{ ubuntus }}"

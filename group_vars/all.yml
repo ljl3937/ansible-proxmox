@@ -48,6 +48,6 @@ vmbridge30: vmbr30
 vmcores: 2
 vmdisk: 15
 vmids: [1109, 1110, 1111]
-vmmemory: 4096
+vmmemory: 8192
 vmname: vThunder
 vmvcpus: 1

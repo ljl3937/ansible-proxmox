@@ -46,7 +46,7 @@ vmids       :
 vmname      : vThunder
 vmcores     : 2
 vmvcpus     : 1
-vmmemory    : 4096
+vmmemory    : 8192
 vmdisk      : 15
 vmbridge    : vmbr0
 vmbridge10  : vmbr10
@@ -56,8 +56,8 @@ vmbridge30  : vmbr30
 ubuntus     :
   - { vmid: '1004', hostname: 'puppet-server', ip: '10.12.1.154', nic: ["eno1","eno2","eno3","eno4"], vlan_ip: ["10.10.0.4","20.20.0.4","30.30.0.4"] }
   - { vmid: '1005', hostname: 'puppet-client', ip: '10.12.1.155', nic: ["eno1","eno2","eno3","eno4"], vlan_ip: ["10.10.0.5","20.20.0.5","30.30.0.5"] }
-# pubkey      : ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtbRVX5ENRF9+AimevwtRjSJlTXhNZDZ5V7F3Z2RPDnGnxDs9G2PUaxMBYa2EU3ZF68SiL1fjUuLS6sZOb2o9i9d/WqyOQRlEQ+l05LDrzpZzgWiJ4em5+sBILHtX0n1YOoLI3njmM6knQqooMTWM22vsFg88GhQmaBbkiK3MRe/yV7AGXVa96h+2lflSMY2g1+7Z/eqjuLOzeTAXxGil+hxo49SPmi77jia4vQMYRupp32U8HTGfA3o2/GTsRel0murEJTf1y6ZduC1WsAp0aDWaVsNfN1PurizS751P7t4SqYM6IOjLYHV1G5NwS0qlO00MLwSLWZ8vZVQxN2Btqt5kAr5CkAO9sQOz2wrmSlMtzQQXsAOmlvH2TZ8NKjWPa05ikUmLmJIaq+7jP9fMb/ts5StaBTke+YMVBaA+Z/MsTtd68D6XFf1ePk9M1lNmu67HOT5a5xEoW8mNKZIeXubhGN6dmRPdgXstjrMKeZhrjRH8ufMBBI9OWL8P6hWE= root@arch
-pubkey      : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSrL4GP9bwNT1AREVVFgrfgPbcoISITJ92GAFLYg4LMA38nw5tO/aLICj430Ex9I0tAvKvBScViypFDyoMbNdAgNtTdORn7g75TxQFEIETJCNATdXa0fmxxhR4pZbpNa+GDmtQTLWlvqOasJ8hBYIknWer0biCTgdhm7eE/A2cnlKzkofm9iCIAxe18aOMIvrPAjSdIO6fkNbyO6PZhm+FksstrXSiTpcyp5SZNVaiQTcIGDjWcblbFVV8vt1SAq0igmrOhEDOVvOjnKZyeikd5exswXwwsz25+Q0+ebINwAUMQLbezBqRSENxysoYUF1JYTEmXlleOICOEAo/xEe1 root@client01"
+pubkey      : ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtbRVX5ENRF9+AimevwtRjSJlTXhNZDZ5V7F3Z2RPDnGnxDs9G2PUaxMBYa2EU3ZF68SiL1fjUuLS6sZOb2o9i9d/WqyOQRlEQ+l05LDrzpZzgWiJ4em5+sBILHtX0n1YOoLI3njmM6knQqooMTWM22vsFg88GhQmaBbkiK3MRe/yV7AGXVa96h+2lflSMY2g1+7Z/eqjuLOzeTAXxGil+hxo49SPmi77jia4vQMYRupp32U8HTGfA3o2/GTsRel0murEJTf1y6ZduC1WsAp0aDWaVsNfN1PurizS751P7t4SqYM6IOjLYHV1G5NwS0qlO00MLwSLWZ8vZVQxN2Btqt5kAr5CkAO9sQOz2wrmSlMtzQQXsAOmlvH2TZ8NKjWPa05ikUmLmJIaq+7jP9fMb/ts5StaBTke+YMVBaA+Z/MsTtd68D6XFf1ePk9M1lNmu67HOT5a5xEoW8mNKZIeXubhGN6dmRPdgXstjrMKeZhrjRH8ufMBBI9OWL8P6hWE= root@arch
+# pubkey      : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSrL4GP9bwNT1AREVVFgrfgPbcoISITJ92GAFLYg4LMA38nw5tO/aLICj430Ex9I0tAvKvBScViypFDyoMbNdAgNtTdORn7g75TxQFEIETJCNATdXa0fmxxhR4pZbpNa+GDmtQTLWlvqOasJ8hBYIknWer0biCTgdhm7eE/A2cnlKzkofm9iCIAxe18aOMIvrPAjSdIO6fkNbyO6PZhm+FksstrXSiTpcyp5SZNVaiQTcIGDjWcblbFVV8vt1SAq0igmrOhEDOVvOjnKZyeikd5exswXwwsz25+Q0+ebINwAUMQLbezBqRSENxysoYUF1JYTEmXlleOICOEAo/xEe1 root@client01"
 testbedargs :
   {
     MGMT    : "10.12.1.157",

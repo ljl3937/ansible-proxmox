@@ -1,0 +1,4 @@
+- name: import vm
+  shell: "qm importovf 109 /var/lib/vz/template/iso/Atm-Client-245.ovf local-lvm --format vmdk"
+  register: myoutput
+  changed_when: myoutput.rc != 0
