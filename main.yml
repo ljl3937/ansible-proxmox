@@ -19,7 +19,7 @@
   gather_facts: no
   #connection: local
   roles:
-      # - container
+      - container
       - vm
 
 - hosts: ubuntu
