@@ -30,5 +30,6 @@
       }'
     ostemplate: 'local:vztmpl/{{ os_template }}'
     pubkey: "{{ pubkey }}"
+    onboot: yes
     state: present
 
