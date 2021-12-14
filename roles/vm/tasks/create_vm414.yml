@@ -25,6 +25,6 @@
     # ide: '{"ide[0]":"local-lvm:15"}'
 
 - name: Make Disk
-  shell: "/usr/sbin/qm importdisk {{ item.vmid }} /root/vThunder_4_1_4-GR1-P8_53.qcow2 local-lvm && /usr/sbin/qm set {{ item.vmid }} -virtio0 local-lvm:vm-{{ item.vmid }}-disk-0 -bootdisk virtio0 -boot order=virtio0"
+  shell: "/usr/sbin/qm importdisk {{ item.vmid }} /root/vThunder_4_1_4-GR1-P8_53.qcow2 local-lvm && /usr/sbin/qm set {{ item.vmid }} -virtio0 local-lvm:vm-{{ item.vmid }}-disk-0 -bootdisk virtio0 && qm set {{ item.vmid }} -boot order=virtio0"
   register: myoutput
   changed_when: myoutput.rc != 0

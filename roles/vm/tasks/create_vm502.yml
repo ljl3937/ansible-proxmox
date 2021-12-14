@@ -22,6 +22,6 @@
     args: "-serial telnet:10.12.1.105:{{ item.port }},server,nowait,nodelay"
 
 - name: Make Disk
-  shell: "qm importdisk {{ item.vmid }} /root/vThunder_5_0_2-TPS_221.qcow2  local-lvm && qm set {{ item.vmid }} -virtio0 local-lvm:vm-{{ item.vmid }}-disk-0 -bootdisk virtio0 -boot order=virtio0"
+  shell: "qm importdisk {{ item.vmid }} /root/vThunder_5_0_2-TPS_221.qcow2  local-lvm && qm set {{ item.vmid }} -virtio0 local-lvm:vm-{{ item.vmid }}-disk-0 -bootdisk virtio0 && qm set {{ item.vmid }} -boot order=virtio0"
   register: myoutput
   changed_when: myoutput.rc != 0
