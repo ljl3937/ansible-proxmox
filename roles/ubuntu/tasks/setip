@@ -14,9 +14,8 @@ for j in range(len(args)):
                 print("cmd:%s" % cmd)
                 state,output = subprocess.getstatusoutput(cmd)
                 if i is 0:
-                    cmd = "echo PS1=\"\\u@ATM\\W\\\\$\" >> /root/.bashrc;"
+                    cmd = "echo 'PS1=\"\\u@ATM\W\\\\$\"' >> /root/.bashrc;"
                 elif i is 1:
-                    cmd = "echo PS1=\"\\u@ATM-Server\\W\\\\$\" >> /root/.bashrc;"
-                print("cmd:%s" % cmd)
+                    cmd = "echo 'PS1=\"\\u@ATM-Server\W\\\\$\"' >> /root/.bashrc;"
                 state,output = subprocess.getstatusoutput(cmd)
                 i += 1
