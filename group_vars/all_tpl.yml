@@ -19,8 +19,8 @@ ctnum       : 2
 ctpassword  : password
 searchdomain: puppet.com
 ctnameserver: 8.8.8.8
-ctcores     : 2
-ctmemory    : 1024
+ctcores     : 4
+ctmemory    : 4096
 ctswap      : 512
 ctdisk      : 10
 ctstorage   : local-lvm
